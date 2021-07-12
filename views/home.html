@@ -1,0 +1,223 @@
+
+<div class="row  mb-3 header ">
+    <nav class=" row  col-12 col-sm-12 navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+      <div class="container">
+  
+        <!-- Brand -->
+        
+        <a class="navbar-brand"  href="#" target="_blank"><i class="fa fa-user fa-lg" style="color: black;" aria-hidden="true" ></i>  
+          <span id="result-name" /></button>
+        </a> 
+        
+  
+        <!-- Collapse -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  
+          <!-- Left -->
+          <ul class="navbar-nav mr-auto">
+  
+            <li class="nav-item">
+              <button class=" btn btn-center" data-toggle="modal" data-target="#downloadModal"   style="color: black;"><i class="fa fa-download fa-lg" aria-hidden="true"></i> About Hospital</button>
+            </li>
+            <li class="nav-item">
+              <button class=" btn btn-center " href="#" data-toggle="modal" data-target="#contactModal" style="color: black;"><i class="fa fa-phone fa-lg" aria-hidden="true"></i> Contact Us</button>
+            </li>
+          </ul>
+  
+          <!-- Right -->
+          <ul class="navbar-nav nav-flex-icons">
+            <li class="nav-item mr-3"><span class="navbar-text" >
+              <button class="btn btn-center " onclick="Favourites()" data-toggle-="tooltip"data-placement="top" title="Favourites" >
+                <i class="fa fa-bookmark-o"> <strong>Patients</strong></i>
+            
+            </button>
+          </span>
+            </li>
+            <li class="nav-item ">
+              <span class="navbar-text" >
+  
+                <button type="button" data-toggle-="tooltip"data-placement="top" title="LogOut" id ="logout" class="btn btn-center "><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i> logout
+              </button>
+            </span>
+            </li>
+          </ul>
+  
+        </div>
+  
+      </div>
+    </nav>
+    </div>
+  
+  
+  
+  
+    <div class="row tasks col-12 col-sm-12  justify-content-center">
+      <div id="accordion ">
+          <div class="card">
+            <div class="card-header"  id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn " data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Add Patients
+                </button>
+              </h5>
+            </div>
+        
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body">
+                  
+                  <form id ="add">
+                      <div class="form-row">
+                          <div class="form-group col-sm-5">
+                                  
+                              <input type="text" class="form-control form-control-sm mr-1" id="firstname" name="firstname"placeholder="Firstname">
+                          </div>
+                          <div class="form-group col-sm-5">
+                              
+                              <input type="text" class="form-control form-control-sm mr-1"  id="lastname" name="lastname"placeholder="Lastname">
+                          </div>
+                          <div class="form-group col-sm-5">
+                              
+                              <input type="text"class="form-control form-control-sm mr-1" id="covid" name="covid"  placeholder="Enter covid Status [Positive: Enter '0', Negative: Enter '1']">
+                          </div>
+                          <div class="form-group col-sm-5">
+                            
+                            <input type="text" class="form-control form-control-sm mr-1" id="bed" name="bed"  placeholder="Allocate Bed">
+                        </div>
+                        
+                          
+                      <div class=" row form-row col-12 col-sm-12">
+                          <button type="button" class="btn btn-center btn-sm ml-auto " style="color: black;" data-dismiss="modal">Cancel</button>
+                          <button type="submit" class="btn btn-center">Add Patient</button>    
+                      </div>
+                  </form>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"  id="headingTwo">
+              <h5 class="mb-0">
+                <button class="btn  collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Remove Patients
+                </button>
+              </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div class="card-body">
+  
+                  <form id ="remove">
+                      <div class="form-row">
+                          <div class="form-group col-sm-5">
+                                  
+                              <input type="text" class="form-control form-control-sm mr-1" id="firstname" name="firstname"placeholder="Firstname">
+                          </div>
+                          <div class="form-group col-sm-5">
+                              
+                              <input type="text" class="form-control form-control-sm mr-1"  id="lastname" name="lastname"placeholder="Lastname">
+                          </div>
+                          
+                          <div class="form-group col-sm-5">
+                            
+                            <input type="text" class="form-control form-control-sm mr-1" id="bed" name="bed"  placeholder="Enter Bed Id">
+                        </div>
+                        
+                      </div>
+                      <div class="form-row">
+                          <button type="button" class="btn btn-center btn-sm ml-auto " style="color: black;" data-dismiss="modal">Cancel</button>
+                          <button type="submit" class="btn btn-center">Remove Patient</button>    
+                      </div>
+                  </form>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card"style="color: black;">
+            <div class="card-header"  id="headingThree">
+              <h5 class="mb-0">
+                <button class="btn " data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                 Update Patients
+                </button>
+              </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+              <div class="card-body">
+  
+                  <form id ="update">
+                      <div class="form-row">
+                          <div class="form-group col-sm-5">
+                                  
+                              <input type="text" class="form-control form-control-sm mr-1" id="firstname" name="firstname"placeholder="Firstname">
+                          </div>
+                          <div class="form-group col-sm-5">
+                              
+                              <input type="text" class="form-control form-control-sm mr-1"  id="lastname" name="lastname"placeholder="Lastname">
+                          </div>
+                          <div class="form-group col-sm-5">
+                              
+                              <input type="text"class="form-control form-control-sm mr-1" id="covid" name="covid"  placeholder="Update Covid Status  ">
+                          </div>
+                          <div class="form-group col-sm-5">
+                              
+                            <input type="text"class="form-control form-control-sm mr-1" id="bed" name="bed"  placeholder="Enter Bed Number  ">
+                        </div>
+                          
+                          
+                      </div>
+                      <div class="form-row">
+                          <button type="button" class="btn btn-center btn-sm ml-auto " style="color: black;" data-dismiss="modal">Cancel</button>
+                          <button type="submit" class="btn btn-center">Update</button>    
+                      </div>
+                  </form>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  <div id="contactModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" role="content">
+         <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: rgb(198, 235, 238);">
+                <h4 class="modal-title">Contacts </h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+              <p><strong>Address:</strong> Door No. 11-4-4/A, Waltair Main Road Ram Nagar Rockdale Layout, Visakhapatnam, Andhra Pradesh, 530002
+                  <br>
+                  <strong>Open:</strong> 24 hours<br>
+                  <strong>Phone</strong> 0891 667 7777</p>
+                <p>This website belongs to Anurav Modak
+                 <br> For any query contact him at: "anuravmodak1@gmail.com"
+                </p>
+            </div>
+        </div>
+    </div>
+  </div> 
+  <div id="downloadModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" role="content">
+         <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: rgb(198, 235, 238);">
+                <h4 class="modal-title">Introduction</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">Seven Hills Hospital in Visakhapatnam. Hospitals with Address, Contact Number, Photos, Maps. View Seven Hills Hospital, Visakhapatnam on Justdial.<br>
+  
+              In Visakhapatnam, Seven Hills Hospital is a recognized name in patient care. It was incepted in the year 1988. They are one of the well-known Hospitals in Ram Nagar. Backed with a vision to offer the best in patient care and equipped with technologically advanced healthcare facilities, they are one of the upcoming names in the healthcare industry. Located in , this hospital is easily accessible by various means of transport.<br>
+              
+              
+                
+            </div>
+        </div>
+    </div>
+  </div> 
+
+
+  
