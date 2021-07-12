@@ -131,6 +131,73 @@
   </style>
 <body>
 
+    <div class="row  mb-3 header ">
+    <nav class=" row  col-12 col-sm-12 navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+      <div class="container">
+  
+        <!-- Brand -->
+        
+        <a class="navbar-brand"  href="#" target="_blank"><i class="fa fa-user fa-lg" style="color: black;" aria-hidden="true" ></i>  
+          <span id="result-name" /></button>
+        </a> 
+        
+  
+        <!-- Collapse -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  
+          <!-- Left -->
+          <ul class="navbar-nav mr-auto">
+  
+            <li class="nav-item">
+              <button class=" btn btn-center" data-toggle="modal" data-target="#downloadModal"   style="color: black;"><i class="fa fa-download fa-lg" aria-hidden="true"></i> About Hospital</button>
+            </li>
+            <li class="nav-item">
+              <button class=" btn btn-center " href="#" data-toggle="modal" data-target="#contactModal" style="color: black;"><i class="fa fa-phone fa-lg" aria-hidden="true"></i> Contact Us</button>
+            </li>
+          </ul>
+  
+          <!-- Right -->
+          <ul class="navbar-nav nav-flex-icons">
+            <li class="nav-item mr-3"><span class="navbar-text" >
+              <button id='patient'class="btn btn-center "  data-toggle-="tooltip"data-placement="top" title="patient" >
+                <i class="fa fa-bookmark-o"> <strong>Patients</strong></i>
+            
+            </button>
+          </span>
+            </li>
+            <li class="nav-item ">
+              <span class="navbar-text" >
+  
+                <button type="button" data-toggle-="tooltip"data-placement="top" title="LogOut" id ="logout" class="btn btn-center "><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i> logout
+              </button>
+            </span>
+            </li>
+          </ul>
+  
+        </div>
+  
+      </div>
+    </nav>
+    </div>
+
+
+    <div class="row col-12 col-sm-12 mt-5" id="items">
+      
+      
+        <div class="card-group col-12 col-sm-12  mt-5 justify-content-center">
+          <h1 class="mt-4 mb-4" style="font-family: cursive">*LIST OF PATIENTS*</h1>
+          <div class="row cardsgenesis col-12 col-sm-12 justify-content-center" id="hanged">
+  
+          </div>
+        </div>
+      </div>
+
 
 
 
@@ -150,193 +217,87 @@
 
     <script>
 
-// Favourite API...............................................
+// Patient API...............................................
 
 
 
 window.addEventListener('load', (event) => {
-  console.log('page is fully loaded');
-  let add_data;
-function signUp_handleSubmit(event) {
-      let value;
-      event.preventDefault();
-      const data = new FormData(event.target);
-      value = Object.fromEntries(data.entries());
-      console.log({ value });
-      add_data=value;
-  }
+
+    var new_list=sessionStorage.getItem('patients_list');
+    var list=JSON.parse(new_list);
+    console.log(list,typeof list);
 
 
-
-  var add_form=document.querySelector('#add');
-  add_form.addEventListener('submit',signUp_handleSubmit);
-  console.log("body",document.body);
-  console.log(add_form,add_data);
-
-  add.onsubmit=async(e)=>{
-    e.preventDefault();
-    var form = document.querySelector("#add");
-    console.log("add data" ,add_data);
-      let response = await fetch('/patients/add', {
-              method: 'POST', // or 'PUT'
-              headers: {
-                  'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(add_data),
-              
-      });
-      let text = await response.text() 
-      console.log(text);
-      if (response.status==200){
-        console.log("Patient successfully added");
-        console.log(text);
-        alert( "Patient successfully added! Click ok to continue");
-      }
-      else
-      {console.log(response);
-        console.log("Bed Not Available!! Try Other bed number");
-        alert( "Bed Not Available!! Try Other bed numberTry logging in");
-      }
-
-  };
-
-  
-  let remove_data;
-
-  function remove_handleSubmit(event) {
-      let value;
-      event.preventDefault();
-      const data = new FormData(event.target);
-      value = Object.fromEntries(data.entries());
-      console.log({ value });
-      remove_data=value;
-  }
-
-  var remove_form=document.querySelector('#remove');
-  remove_form.addEventListener('submit',remove_handleSubmit);
-  console.log("body",document.body);
-  console.log(remove_form,remove_data);
-
-  remove.onsubmit=async(e)=>{
-
-    e.preventDefault();
-    var form = document.querySelector("#remove");
-    console.log("remove" ,remove_data);
-      let response = await fetch('/patients/remove', {
-              method: 'POST', // or 'PUT'
-              headers: {
-                  'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(remove_data),
-              
-      });
-      let text = await response.text() 
-      console.log(text);
-      if (response.status==200){
-        console.log("Patient Removed from Database");
-        console.log(text);
-        alert( "Patient Removed from Database!! Click ok to continue");
-      }
-      else
-      {console.log(response);
-        console.log("Patient Not Available!! Try Other bed number");
-        alert( "PAtient Not Available!! Try Other bed numberTry logging in");
-      }
-
-
-  }
-
-
-
-  let update_data;
-  function update_handleSubmit(event) {
-      let value;
-      event.preventDefault();
-      const data = new FormData(event.target);
-      value = Object.fromEntries(data.entries());
-      console.log({ value });
-      update_data=value;
-  }
-
-  var update_form=document.querySelector('#update');
-  update_form.addEventListener('submit',update_handleSubmit);
-  console.log("body",document.body);
-  console.log(update_form,update_data);
-
-  update.onsubmit=async(e)=>{
-
-  e.preventDefault();
-  var form = document.querySelector("#update");
-  console.log("update" ,update_data);
-  let response = await fetch('/patients/update', {
-          method: 'POST', // or 'PUT'
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(update_data),
-          
-  });
-  let text = await response.text() 
-  console.log(text);
-  if (response.status==200){
-    console.log("Patient's information updated");
-    console.log(text);
-    alert( "Patient's information updated!! Click ok to continue");
-  }
-  else
-  {console.log(response);
-    console.log("Patient Not Available!! Try Other bed number");
-    alert( "Patient Not Available!! Try Other bed number");
-  }
-
-
-}
-
-const patient_list=document.getElementById('patient');
-patient_list.onclick=async(e)=>{
-
-e.preventDefault();
-var form = document.querySelector("#patient");
-
-let response = await fetch('/patients/patients', {
-        method: 'GET', // or 'PUT'
+    if (list ===null){
+        document.body="You are not Logged in!! Pleaset Login and Try again :)";
         
-        
-});
-let text = await response.text() 
-console.log(response);
-// console.log(text,text.length,typeof text);
+    }
+    else{
+        var i;
+        if (list.length==0){
+            var pass=document.getElementById('cardsgenesis');
+            var pass_msg=document.createElement('p');
+            var text=document.createTextNode('No Patients Available');
+            pass_msg.append(text);
+            pass.append(pass_msg);
 
-var new_json=JSON.parse(text);
-// console.log(new_json,'length of new_json',new_json.length);
-sessionStorage.setItem('patients_list',text);
-window.location.replace('patient.html');
+        }
+        var cardgenesis=document.getElementById('hanged');
 
+        for(i=0;i<list.length;i++){
+            
+            var outerDiv=document.createElement('div');
+            outerDiv.setAttribute('class','row cards col-12 col-sm-12 mt-2 mb-4 justify-content-center');
 
+            var cardDiv=document.createElement('div');
 
+            var headerDiv=document.createElement('div');
+            headerDiv.setAttribute('class','card col-12 col-sm-12');
+            var header=document.createElement('H1');
+            var patient_number="Patient Number:"+(i+1);
+            header.append(patient_number);
+            headerDiv.append(header);
+            cardDiv.append(headerDiv);
+            outerDiv.append(cardDiv);
 
-}
+            var unorderd_list=document.createElement('ul');
+            unorderd_list.setAttribute('class','list-group list-group-flush');
 
+            var item1=document.createElement('li');
+            item1.setAttribute('class','list-group-item');
+            var s=list[i].firstname+" "+list[i].lastname;
+            item1.append(s);
 
+            var item2=document.createElement('li');
+            item2.setAttribute('class','list-group-item');
+            var bed="Bed Number: "+list[i].bed
+            item2.append(bed);
 
+            var item3=document.createElement('li');
+            item3.setAttribute('class','list-group-item');
+            var covid_status="Covid Status: "+list[i].covid;
+            item3.append(covid_status);
+
+            unorderd_list.append(item1);
+            unorderd_list.append(item2);
+            unorderd_list.append(item3);
+
+            cardDiv.append(unorderd_list);
+
+            outerDiv.append(cardDiv);
+            cardgenesis.append(outerDiv);
+           
+        }
+
+    }
+    
 
 });
 
 
 
-  
-
-  
 
 
-
-
-
-      // function Favourites(){
-      //   window.location.href="favourites.html";
-
-      // }
-        
       var  username;
       var  firstname;
       var lastname;
@@ -348,14 +309,19 @@ window.location.replace('patient.html');
     username=sessionStorage.getItem("Username");
     firstname=sessionStorage.getItem("Firstname");
     lastname=sessionStorage.getItem("Lastname");
-    MAIN=sessionStorage.getItem("BODY");
-    document.body.innerHTML=MAIN;
+    // MAIN=sessionStorage.getItem("BODY");
+    // document.body.innerHTML=MAIN;
 
 
     
     // console.log("username",username,lastname);
     user=document.getElementById('result-name');
     user.innerHTML=login_name;
+
+    if (sessionStorage.getItem("patients_list")==null){
+        document.body.innerHTML="You have beed logged out!! Please Login and Try again :) ";
+
+    }
 
   
     if (sessionStorage.getItem("BODY") ==null){
@@ -399,6 +365,7 @@ const Logout=document.getElementById("logout");
     sessionStorage.removeItem("lastname");
     sessionStorage.removeItem("login_username");
     sessionStorage.removeItem("BODY");
+    sessionStorage.removeItem("patients_list");
     
 
     window.alert("You will be logged out!! Press 'OK' to confirm");
