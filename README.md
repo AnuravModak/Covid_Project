@@ -9,5 +9,9 @@ STEP-6: SIGNUP AS AN ADMIN WITH ANY DUMMY USERNAME AND PASSWORD.......(NOTE: ALL
 DUMMY VARIABLES: "FIRSTNAME": ABC "LASTNAME": MNO , "USERNAME": ABCMNO@gmail.com, PASSWORD:password
 STEP-7: AGTER SIGINING IN LOGON WITH THE SAME CREDENTIALS........
 STEP-8: ADD/REMOVE/UPDATE PATIENTS DETAIL.
+You must have mongodb installed to your system...after installing mongodb
+STEP-1: use project_3 (in another command window)
+after add a patient from browser use command
+db.patients.find().pretty()
 
 
